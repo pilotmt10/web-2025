@@ -1,31 +1,23 @@
+<script setup lang="ts">
+
+import Header from "@/components/App/Header.vue";
+import Footer from "@/components/App/Footer.vue";
+
+</script>
+
 <template>
-  <div class="wrap">
-    <header class="row justify">
-      <img src="@/assets/img/image.jpg" width="100" />
-      <ul class="row">
-        <li><RouterLink to="/">Главная</RouterLink></li>
-        <li><RouterLink to="/about">О компании</RouterLink></li>
-        <li><RouterLink to="/login">Авторизация</RouterLink></li>
-      </ul>
-    </header>
+  <Header />
 
-    <main>
-      <router-view />
-    </main>
-  </div>
+  <main>
+    <router-view />
+  </main>
 
-  <footer class="row justify">
-    <div>
-      &copy; БГТУ 2025
-    </div>
-    <div>
-      Ссылка на ТГ
-    </div>
-  </footer>
+  <Footer />
+
 </template>
 
 <style>
-  .router-link-active {
-    color: red;
+  main {
+    margin: 25px 0 45px;
   }
 </style>
