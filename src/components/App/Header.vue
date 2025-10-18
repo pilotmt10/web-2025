@@ -1,3 +1,15 @@
+<script setup>
+  import {ref} from "vue";
+
+  const searchText = ref()
+  const isSearchResult = ref(false)
+
+  const searchInput = (event) => {
+    isSearchResult.value = searchText.value.length >= 4
+  }
+
+</script>
+
 <template>
   <header>
     <div class="container">
@@ -10,7 +22,14 @@
         <router-link to="/">Каталог</router-link>
       </div>
       <div class="search">
-        <input type="text">
+        <input type="text" v-model="searchText" @keyup="searchInput">
+        <div class="search-result" v-show="isSearchResult">
+          Результат 1<br />
+          Результат 2<br />
+          Результат 3<br />
+          Результат 4<br />
+          Результат 5<br />
+        </div>
       </div>
       <nav>
         <ul>
@@ -71,6 +90,7 @@
 
   header .search {
     width: 100%;
+    position: relative;
   }
 
   header .search input {
@@ -79,4 +99,13 @@
     border-radius: 6px;
     border: 2px solid var(--color-primary);
   }
+
+  .search .search-result {
+    width: 100%;
+    position: absolute;
+    background-color: #fff;
+    padding: 15px;
+  }
 </style>
+<script setup lang="ts">
+</script>

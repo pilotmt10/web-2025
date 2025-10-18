@@ -1,6 +1,35 @@
 <script setup lang="ts">
 import ProductItem from "@/components/Catalog/ProductItem.vue";
 import CategoryItem from "@/components/Catalog/CategoryItem.vue";
+import {ref} from "vue";
+
+const products = ref([
+  {
+    id: 1,
+    name: 'Товар 1',
+    price: 3500
+  },
+  {
+    id: 2,
+    name: 'Товар 2',
+    price: 3600
+  },
+  {
+    id: 3,
+    name: 'Товар 3',
+    price: 3600
+  },
+  {
+    id: 4,
+    name: 'Товар 4',
+    price: 3600
+  },
+  {
+    id: 5,
+    name: 'Товар 5',
+    price: 3600
+  }
+])
 </script>
 
 <template>
@@ -8,7 +37,14 @@ import CategoryItem from "@/components/Catalog/CategoryItem.vue";
     <h1>Новые поступления</h1>
 
     <section class="categories">
-      <CategoryItem />
+      <CategoryItem>
+        <slot>
+          ksdjflksdjflkdsjflk
+          skdfjlksdf
+          sdkfjlksdjdf
+          jksldjflksd
+        </slot>
+      </CategoryItem>
       <CategoryItem />
       <CategoryItem />
       <CategoryItem />
@@ -18,14 +54,12 @@ import CategoryItem from "@/components/Catalog/CategoryItem.vue";
     </section>
 
     <section class="products">
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
+      <ProductItem
+          v-for="item in products"
+          :id="item.id"
+          :name="item.name"
+          :price="item.price"
+      />
     </section>
   </div>
 </template>

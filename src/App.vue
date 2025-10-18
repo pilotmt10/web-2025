@@ -1,19 +1,7 @@
-<script setup lang="ts">
-
-import Header from "@/components/App/Header.vue";
-import Footer from "@/components/App/Footer.vue";
-
-</script>
-
 <template>
-  <Header />
-
-  <main>
-    <router-view />
-  </main>
-
-  <Footer />
-
+    <component :is="useRoute().meta.layout">
+      <slot />
+    </component>
 </template>
 
 <style>
@@ -21,3 +9,8 @@ import Footer from "@/components/App/Footer.vue";
     margin: 25px 0 45px;
   }
 </style>
+
+<script setup lang="ts">
+
+import {useRoute} from "vue-router";
+</script>

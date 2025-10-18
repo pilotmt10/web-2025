@@ -1,10 +1,18 @@
+<script setup>
+  defineProps({
+    id: Number,
+    name: String,
+    price: Number
+  })
+</script>
+
 <template>
   <div class="product-item">
     <router-link to="/">
       <div class="img-container"><img src="@/assets/img/image.jpg" /></div>
       <div class="product-info">
-        <div><span class="price">3 500 &#8381;</span></div>
-        <h3 class="text-blue">Клавиатура Asus PK-100S</h3>
+        <div><span class="price">{{ price }} &#8381;</span></div>
+        <h3 class="text-blue">{{ name }}</h3>
       </div>
     </router-link>
     <button data-id="1">Купить</button>
