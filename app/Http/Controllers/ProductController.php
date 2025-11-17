@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\IndexRequest;
+use App\Http\Requests\Product\StoreRequest;
+use App\Models\Product;
 use App\Services\ProductService;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
@@ -10,12 +14,19 @@ class ProductController extends Controller
     {
     }
 
-    public function index(): array
+    public function store(StoreRequest $request): Product
     {
-        return $this->service->getAllProducts();
+        return $this->service->create(
+            $request->validated()
+        );
     }
 
-    public function show(int $id): array
+    public function index(IndexRequest $request): Collection
+    {
+        return $this->service->getAllProducts($request->validated());
+    }
+
+    public function show(int $id): Product
     {
         return $this->service->getProductById($id);
     }

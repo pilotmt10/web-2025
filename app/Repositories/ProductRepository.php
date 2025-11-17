@@ -2,23 +2,34 @@
 
 namespace App\Repositories;
 
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
+
 class ProductRepository
 {
-    public function all(): array
+    public function create(array $data): Product
     {
-        return [
-            ['id' => 1, 'name' => 'Товар 1'],
-            ['id' => 2, 'name' => 'Товар 2'],
-            ['id' => 3, 'name' => 'Товар 3'],
-            ['id' => 4, 'name' => 'Товар 4']
-        ];
+        return Product::create($data);
     }
 
-    public function findById(int $id): array
+    public function all(array $filters): Collection
     {
-        return [
-            'id' => $id,
-            'name' => 'Товар 1'
-        ];
+        $query = Product::query()
+            ->with('category')
+            ->orderBy('price');
+
+        if (isset($filters['category_id'])) {
+            $query->where('category_id', $filters['category_id']);
+        }
+
+        return $query->get();
+    }
+
+    public function findById(int $id): ?Product
+    {
+        return Product::query()
+            ->with('category')
+            ->where('id', $id)
+            ->first();
     }
 }
